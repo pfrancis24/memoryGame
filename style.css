@@ -1,0 +1,131 @@
+body {
+  height: 85%;
+  width: 100%;
+  display: grid;
+  background: url(img/meadow.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+main {
+  margin: 30px 0 0 0;
+  padding: 10px;
+}
+
+h1 {
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 0.25rem;
+  font-family: cursive;
+  text-align: center;
+  border: 3px double #ffffff;
+  border-radius: 5px;
+  color: #ff5191;
+  background-color: #ffe057;
+  box-shadow: 2px 2px 2px #b97f00;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  font-family: cursive;
+  border: 2px double #a8a8a8;
+  border-radius: 3px;
+  color: #4e4e4e;
+  background-color: #f7f7f7;
+  box-shadow: 2px 2px 2px #b0b0b0;
+}
+
+#container {
+  margin: 0 auto;
+  padding: 15px;
+  width: 445px;
+  height: 450px;
+  border-radius: 25px;
+  background-color: #e2e2e263;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #e8efdf;
+  transition: background-color 0.5s;
+}
+
+#cards div {
+  border: 2px double #ffffff;
+  border-radius: 3px;
+  width: 5rem;
+  height: 5rem;
+  margin: 0.32rem;
+  padding: 0.5rem 0.5rem;
+  display: inline-block;
+}
+
+.cardCover {
+  background-color: #ed92b3;
+  background-image: none; /*add image to this and reveal??*/
+}
+
+.cardCover:hover {
+  cursor: pointer;
+  background-color: #ea6596;
+  transition: background-color 0.5s;
+}
+
+.cardReveal {
+  background-color: #ea659600;
+  background-image: none;
+  transition: background-color 0.75s;
+}
+
+/* setup classes per butterfly (should be 8) */
+.monarch {
+  background-image: url('img/monarch.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.swallowtail {
+  background-image: url('img/swallowtail.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.buckeye {
+  background-image: url('img/buckeye.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.sulphur {
+  background-image: url('img/sulphur.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.nymph {
+  background-image: url('img/nymph.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.whites {
+  background-image: url('img/whites.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.fritillary {
+  background-image: url('img/fritillary.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.skipper {
+  background-image: url('img/skipper.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
