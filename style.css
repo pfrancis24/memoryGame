@@ -64,12 +64,12 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: #e8efdf;
+  background-color: rgb(234, 234, 234);
   transition: background-color 0.25s;
 }
 
 #cards div {
-  border: 2px double #ffffff;
+  border: 2px double #c9c9c9;
   border-radius: 3px;
   width: 5rem;
   height: 5rem;
@@ -79,13 +79,13 @@ button:hover {
 }
 
 .cardCover {
-  background-color: #ed92b3;
+  background-color: #eff4ea;
   background-image: none; /*add image to this and reveal??*/
 }
 
 .cardCover:hover {
   cursor: pointer;
-  background-color: #ea6596;
+  background-color: #e1e4da;
   transition: background-color 0.5s;
 }
 

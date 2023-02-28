@@ -4,8 +4,12 @@ const gameCards = document.getElementById('cards');
 let yourScoreText = document.getElementById('your-score');
 let bestScoreText = document.getElementById('best-score'); //needs implementing
 
+yourScoreText.textContent = 0;
+bestScoreText.textContent = '~';
+
 let score = 0;
 let faceUp = [];
+let clickLock = false;
 
 const butterflies = [
   'monarch-a',
@@ -66,7 +70,6 @@ function createButterflyGameboard(butterflyArray) {
     // append the div to the element with an id of game
     gameCards.append(newDiv);
   }
-  yourScoreText.textContent = 0;
 }
 
 // next function is to trim the a/b and have cards have same class per pair
@@ -79,6 +82,7 @@ function butterflyName(butterfly) {
 // click event function and reveal/cover logic here:
 function handleCardClick(event) {
   //begin flip/match process
+  if (clickLock === true) return;
   let card = event.target;
   let cardName = card.getAttribute('id');
 
@@ -98,26 +102,24 @@ function handleCardClick(event) {
     }
   }
   if (faceUp.length === 2) {
+    clickLock = true;
     if (!isMatch(faceUp)) {
       setTimeout(function () {
         if (faceUp.length === 2) {
           handleUnmatchedCards(faceUp);
         }
         faceUp = [];
-        score++;
-        console.log(score, 'Counter correct?'); // something isnt right here, first unmatched pair doesnt increment score counter
       }, 1000);
     } else {
       faceUp = [];
-
-      score++; // this one is fine
+      clickLock = false;
     }
-    yourScoreText.textContent = score;
-    console.log();
   }
 }
 
 function isMatch(cards) {
+  score++;
+  yourScoreText.textContent = score;
   return butterflyName(cards[0]) === butterflyName(cards[1]);
 }
 
@@ -130,6 +132,7 @@ function handleUnmatchedCards(cards) {
   card1.classList.add('cardCover');
   card2.classList.remove('cardReveal', butterflyName(cards[1]));
   card2.classList.add('cardCover');
+  clickLock = false;
 }
 
 // counter should be for the two click/does it match?
@@ -139,8 +142,16 @@ function handleUnmatchedCards(cards) {
 // also have if two cards up is 2 do not handle additional clicks
 
 // when the DOM loads
-createButterflyGameboard(shuffledButterflies);
+function resetGameboard(butterflyArray) {
+  gameCards.innerHTML = '';
+  shuffle(butterflyArray);
+  createButterflyGameboard(butterflyArray);
+}
 
+newGameBtn.addEventListener('click', function () {
+  resetGameboard(butterflies);
+  score = 0;
+});
 // addEventListener();
 
 /* */
