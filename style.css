@@ -1,7 +1,7 @@
 body {
   height: 85%;
   width: 100%;
-  display: grid;
+  display: flexbox;
   background: url(img/meadow.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -10,8 +10,8 @@ body {
 }
 
 main {
-  margin: 30px 0 0 0;
-  padding: 10px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 h1 {
@@ -27,9 +27,23 @@ h1 {
   box-shadow: 2px 2px 2px #b97f00;
 }
 
+h5 {
+  margin: 0.5rem auto;
+  min-width: 7rem;
+  max-width: fit-content;
+  padding: 0.25rem;
+  font-family: cursive;
+  border: 2px double #a8a8a8;
+  border-radius: 3px;
+  color: #4e4e4e;
+  background-color: #f7f7f7;
+  box-shadow: 2px 2px 2px #b0b0b0;
+}
+
 button {
   display: block;
-  margin: 10px auto;
+  margin: 0.5rem auto;
+  min-width: 6rem;
   font-family: cursive;
   border: 2px double #a8a8a8;
   border-radius: 3px;
@@ -40,9 +54,10 @@ button {
 
 #container {
   margin: 0 auto;
-  padding: 15px;
-  width: 445px;
-  height: 450px;
+  padding: 1.15rem 0.75rem 1.5rem 1.15rem;
+  /* padding-left: 1.4rem; */
+  width: 28rem;
+  height: 28rem;
   border-radius: 25px;
   background-color: #e2e2e263;
 }
@@ -50,7 +65,7 @@ button {
 button:hover {
   cursor: pointer;
   background-color: #e8efdf;
-  transition: background-color 0.5s;
+  transition: background-color 0.25s;
 }
 
 #cards div {
@@ -64,13 +79,13 @@ button:hover {
 }
 
 .cardCover {
-  background-color: #f38bb1;
+  background-color: #ed92b3;
   background-image: none; /*add image to this and reveal??*/
 }
 
 .cardCover:hover {
   cursor: pointer;
-  background-color: #cc336b;
+  background-color: #ea6596;
   transition: background-color 0.5s;
 }
 
