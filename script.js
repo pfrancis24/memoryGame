@@ -7,8 +7,10 @@ let bestScoreText = document.getElementById('best-score'); //needs implementing
 yourScoreText.textContent = 0;
 bestScoreText.textContent = '~';
 
+let bestScore;
 let score = 0;
 let faceUp = [];
+let matchedPairs = 0;
 let clickLock = false;
 
 const butterflies = [
@@ -113,6 +115,17 @@ function handleCardClick(event) {
     } else {
       faceUp = [];
       clickLock = false;
+      matchedPairs++;
+      console.log(matchedPairs, 'This is a match!');
+    }
+    if (matchedPairs === 8) {
+      setTimeout(alert, 500, 'Great Job! You matched each pair!');
+      if (score < bestScore || !bestScore) {
+        localStorage.setItem('bestScore', score);
+        bestScoreText.textContent = score;
+        bestScore = localStorage.getItem('bestScore');
+        newGameBtn.textContent = 'Play Again?';
+      }
     }
   }
 }
@@ -122,8 +135,6 @@ function isMatch(cards) {
   yourScoreText.textContent = score;
   return butterflyName(cards[0]) === butterflyName(cards[1]);
 }
-
-// function handleMatchedCards(cards) {}    MAYBE delete
 
 function handleUnmatchedCards(cards) {
   const card1 = document.getElementById(cards[0]);
@@ -135,13 +146,22 @@ function handleUnmatchedCards(cards) {
   clickLock = false;
 }
 
-// counter should be for the two click/does it match?
-// if cards match reset counter and leave cards face up
-// if cards dont match, flip back both cards - transition rather than timer
-// set timeout is also for limitting quick clicks (in addition to flip back over)
-// also have if two cards up is 2 do not handle additional clicks
+// writ e afunction that checks if all divs have card reveal
 
-// when the DOM loads
+// function resetGameboard(butterflyArray) {
+//   gameCards.innerHTML = '';
+//   shuffle(butterflyArray);
+//   createButterflyGameboard(butterflyArray);
+// }
+
+// newGameBtn.addEventListener('click', function () {
+//   resetGameboard(butterflies);
+//   score = 0;
+//   newGameBtn.textContent = 'Reset Game';
+//   yourScoreText.textContent = 0;
+//   matchedPairs = 0;
+// });
+
 function resetGameboard(butterflyArray) {
   gameCards.innerHTML = '';
   shuffle(butterflyArray);
@@ -151,7 +171,7 @@ function resetGameboard(butterflyArray) {
 newGameBtn.addEventListener('click', function () {
   resetGameboard(butterflies);
   score = 0;
+  newGameBtn.textContent = 'Reset Game';
+  yourScoreText.textContent = 0;
+  matchedPairs = 0;
 });
-// addEventListener();
-
-/* */
