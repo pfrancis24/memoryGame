@@ -2,8 +2,7 @@ const newGameBtn = document.querySelector('button');
 const gameContainer = document.getElementById('container');
 const gameCards = document.getElementById('cards');
 let yourScoreText = document.getElementById('your-score');
-let bestScoreText = document.getElementById('best-score'); //needs implementing
-
+let bestScoreText = document.getElementById('best-score');
 yourScoreText.textContent = 0;
 bestScoreText.textContent = '~';
 
@@ -59,7 +58,6 @@ function shuffle(array) {
 // it also adds an event listener for a click for each card
 
 let shuffledButterflies = shuffle(butterflies);
-// if they match: splice index of out of this array per match so it
 
 function createButterflyGameboard(butterflyArray) {
   for (let butterfly of butterflyArray) {
@@ -79,32 +77,30 @@ function butterflyName(butterfly) {
   return butterfly.slice(0, -2);
 }
 
-// ***** TODO: DO NOT allow more than two in faceUp, console log to find where *****
-
 // click event function and reveal/cover logic here:
 function handleCardClick(event) {
   //begin flip/match process
   if (clickLock === true) return;
   let card = event.target;
   let cardName = card.getAttribute('id');
-
+  // flipping card 1
   if (faceUp.length < 2) {
     if (faceUp.length === 0 && card.classList.contains('cardCover')) {
       card.classList.remove('cardCover');
       card.classList.add('cardReveal', butterflyName(cardName));
-
       faceUp.push(cardName);
       console.log(faceUp.length, 'pairA');
     } else if (faceUp.length > 0 && card.classList.contains('cardCover')) {
       card.classList.remove('cardCover');
       card.classList.add(butterflyName(cardName), 'cardReveal');
-
       faceUp.push(cardName);
       console.log(faceUp.length, 'pairB');
     }
   }
+  // flipping card 2
   if (faceUp.length === 2) {
     clickLock = true;
+    // if not matched, flip back over after leaving up for 1 second
     if (!isMatch(faceUp)) {
       setTimeout(function () {
         if (faceUp.length === 2) {
@@ -118,8 +114,9 @@ function handleCardClick(event) {
       matchedPairs++;
       console.log(matchedPairs, 'This is a match!');
     }
+    // game finished:
     if (matchedPairs === 8) {
-      setTimeout(alert, 500, 'Great Job! You matched each pair!');
+      setTimeout(alert, 250, 'Great Job! You matched each pair!');
       if (score < bestScore || !bestScore) {
         localStorage.setItem('bestScore', score);
         bestScoreText.textContent = score;
@@ -129,13 +126,14 @@ function handleCardClick(event) {
     }
   }
 }
-
+// checking for matches, incrementing score counter based on pairs of flipped cards
 function isMatch(cards) {
   score++;
   yourScoreText.textContent = score;
   return butterflyName(cards[0]) === butterflyName(cards[1]);
 }
 
+// changing classes to recover reveled cards
 function handleUnmatchedCards(cards) {
   const card1 = document.getElementById(cards[0]);
   const card2 = document.getElementById(cards[1]);
@@ -146,32 +144,19 @@ function handleUnmatchedCards(cards) {
   clickLock = false;
 }
 
-// writ e afunction that checks if all divs have card reveal
-
-// function resetGameboard(butterflyArray) {
-//   gameCards.innerHTML = '';
-//   shuffle(butterflyArray);
-//   createButterflyGameboard(butterflyArray);
-// }
-
-// newGameBtn.addEventListener('click', function () {
-//   resetGameboard(butterflies);
-//   score = 0;
-//   newGameBtn.textContent = 'Reset Game';
-//   yourScoreText.textContent = 0;
-//   matchedPairs = 0;
-// });
-
+// game setup part1
 function resetGameboard(butterflyArray) {
   gameCards.innerHTML = '';
   shuffle(butterflyArray);
   createButterflyGameboard(butterflyArray);
 }
 
+// game setup part2 on button click
 newGameBtn.addEventListener('click', function () {
   resetGameboard(butterflies);
   score = 0;
   newGameBtn.textContent = 'Reset Game';
   yourScoreText.textContent = 0;
   matchedPairs = 0;
+  alert('this is an alert');
 });
