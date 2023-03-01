@@ -158,5 +158,4 @@ newGameBtn.addEventListener('click', function () {
   newGameBtn.textContent = 'Reset Game';
   yourScoreText.textContent = 0;
   matchedPairs = 0;
-  alert('this is an alert');
 });
