@@ -89,12 +89,12 @@ function handleCardClick(event) {
       card.classList.remove('cardCover');
       card.classList.add('cardReveal', butterflyName(cardName));
       faceUp.push(cardName);
-      console.log(faceUp.length, 'pairA');
+      // console.log(faceUp.length, 'pairA');
     } else if (faceUp.length > 0 && card.classList.contains('cardCover')) {
       card.classList.remove('cardCover');
       card.classList.add(butterflyName(cardName), 'cardReveal');
       faceUp.push(cardName);
-      console.log(faceUp.length, 'pairB');
+      // console.log(faceUp.length, 'pairB');
     }
   }
   // flipping card 2
@@ -112,7 +112,7 @@ function handleCardClick(event) {
       faceUp = [];
       clickLock = false;
       matchedPairs++;
-      console.log(matchedPairs, 'This is a match!');
+      // console.log(matchedPairs, 'This is a match!');
     }
     // game finished:
     if (matchedPairs === 8) {
